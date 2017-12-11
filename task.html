@@ -1,0 +1,38 @@
+<html>
+<head></head>
+<body>
+    var tel="31988960074";
+
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => "https://tracksale.co/api/v1/dispatch",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "POST",
+  CURLOPT_POSTFIELDS => "{\n    \"campaign_key\": \"568da0b7f66c1d8cef11a4aa1b592ec5\",\n    \"customers\": [\n        {\n            \"name\":\"Luan Tafa\",\n            \"phone\":tel,\n            \"tags\" : [\n                {\n                    \"name\" : \"Estado\",\n                    \"value\" : \"MG\"\n                },\n                {\n                    \"name\" : \"Cidade\",\n                    \"value\" : \"Belo Horizonte\"\n                }\n            ]\n        }\n    ],\n    \"schedule_time\": 0\n}",
+  CURLOPT_HTTPHEADER => array(
+    "api-key: Y2IzOWFjZWQxNGY4NTk0NTc1ZWFlZGNkNjRkZTM4OTc=",
+    "cache-control: no-cache",
+    "postman-token: 06ecf577-de0a-99c3-b43a-e2d0f2dc17e7"
+  ),
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
+?>
+</body>
+</html>
